@@ -265,6 +265,11 @@ body {
     opacity: 1;
 }
 
+textarea.form-control {
+    resize: vertical; /* solo permite redimensionar verticalmente */
+    min-height: 100px;
+}
+
 .mensaje-exito {
     color: #4ade80;
     font-weight: bold;
