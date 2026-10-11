@@ -1,20 +1,20 @@
 # Tienda de Videojuegos
 
-eCommerce desarrollado con **React 19** (componentes funcionales + Hooks), **Vite** y **Bootstrap 5**, que permite explorar un catálogo de videojuegos, filtrarlo por nombre o categoría, y gestionar un carrito de compras con contador y total dinámicos.
+eCommerce desarrollado con **React 19** (componentes funcionales + Hooks), **Vite** y **Bootstrap 5**, que permite explorar un catálogo de videojuegos, filtrarlo por nombre o categoría, gestionar un carrito de compras con contador y total dinámicos, y contactar al administrador del sitio mediante un formulario validado.
 
 🔗 **Demo en GitHub Pages:** https://cristianjtm.github.io/Exp3_S8_Cristian_Torres_DESARROLLO-FRONTEND-I_004A/
 
 ## Funcionalidades
 
-- **Catálogo dinámico**: los productos se cargan desde `public/assets/data/productos.json` con la Fetch API dentro de un `useEffect`, con manejo de los estados de carga, error y sin resultados.
+- **Catálogo dinámico**: los productos se cargan desde `public/assets/data/productos.json` (objeto JavaScript externo) con la Fetch API dentro de un `useEffect`, con manejo de los estados de carga, error y sin resultados.
 - **Carrito de compras**: agregar/quitar productos directamente desde la tarjeta, sumar/restar unidades y vaciar el carrito. Contador y total se recalculan automáticamente con `reduce`.
 - **Botón inteligente**: cada tarjeta muestra "Agregar al carrito" o "✓ En el carrito (quitar)" según el estado del carrito, cambiando también de color.
 - **Ver más / Ver menos**: botón con estado local (`useState`) en cada tarjeta que muestra u oculta información adicional del producto.
 - **Búsqueda en vivo**: filtra el catálogo mientras se escribe (`onChange`).
 - **Filtro por categoría**: disponible tanto en el menú desplegable del navbar (vía `ReactDOM.createPortal`) como en los botones de la sección "Categorías"; ambos comparten el mismo estado en `App`.
 - **Precios con oferta**: precio normal tachado + precio de oferta con badge, con renderizado condicional.
-- **Formulario de boletín**: inputs controlados con `useState`, validación al enviar y mensaje de éxito/error.
-- **Renderizado condicional**: cargando/error/sin resultados, carrito vacío vs. con productos, precio normal vs. oferta, detalles expandidos/colapsados.
+- **Formulario de contacto**: campos de nombre, email y mensaje con validación individual por campo (errores inline con `is-invalid` de Bootstrap) y mensaje de éxito al enviar.
+- **Renderizado condicional**: cargando/error/sin resultados, carrito vacío vs. con productos, precio normal vs. oferta, detalles expandidos/colapsados, errores de validación por campo.
 
 ## Tecnologías
 
@@ -23,6 +23,7 @@ eCommerce desarrollado con **React 19** (componentes funcionales + Hooks), **Vit
 - Bootstrap 5.3.8 (vía CDN, para navbar, carrusel y grid)
 - CSS propio (`src/style.css`) para la identidad visual del sitio
 - ESLint (linter de código)
+- gh-pages (despliegue en GitHub Pages)
 
 ## Estructura del proyecto
 
@@ -34,7 +35,7 @@ eCommerce desarrollado con **React 19** (componentes funcionales + Hooks), **Vit
 ├───public
 │   └───assets
 │       ├───data
-│       │       productos.json      ← catálogo cargado con Fetch API
+│       │       productos.json      ← objeto JS externo con el catálogo (cargado con Fetch API)
 │       └───img
 │               videojuego1.jpg ... videojuego8.jpg
 │
@@ -51,6 +52,7 @@ eCommerce desarrollado con **React 19** (componentes funcionales + Hooks), **Vit
 │   │       MenuCategoriasNav.jsx
 │   │       Carrito.jsx
 │   │       ItemCarrito.jsx
+│   │       ContactoForm.jsx
 │   │       BoletinForm.jsx
 │   │
 │   └───utils
@@ -79,7 +81,8 @@ eCommerce desarrollado con **React 19** (componentes funcionales + Hooks), **Vit
 | `MenuCategoriasNav` | Mismo filtro de categorías, renderizado dentro del dropdown del navbar vía `createPortal`. |
 | `Carrito` | Resumen del carrito: contador, listado con controles de cantidad y total. |
 | `ItemCarrito` | Una fila del carrito, reutilizable por cada producto agregado. |
-| `BoletinForm` | Formulario de suscripción con validación, montado como segunda raíz de React. |
+| `ContactoForm` | Formulario de contacto (nombre, email, mensaje) con validación individual por campo, montado como segunda raíz de React. |
+| `BoletinForm` | Formulario de suscripción al boletín con validación (componente heredado de iteraciones anteriores). |
 
 ## Cómo ejecutar localmente
 
@@ -99,3 +102,7 @@ npm run build
 # Publicar en GitHub Pages (rama gh-pages)
 npm run deploy
 ```
+
+## Autor
+
+Cristian Torres — DESARROLLO FRONTEND I
